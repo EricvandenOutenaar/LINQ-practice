@@ -5,14 +5,15 @@ using System.Text;
 using System.Linq;
 using System.Collections;
 
-namespace ListingLargestFilesProgram
+namespace Introduction
 {
     /// <summary>
-    /// Attempt to solve the first example in the Linq course 
+    /// Attempt to solve the first example in the Linq course - the assignment was to implement
+    /// a report that writes the fives largest files to the console of a given directory
     /// </summary>
-    public class Before 
+    public class Me 
     {
-        
+
         public void Run()
         {
             var dirInfo = new DirectoryInfo("C:\\Windows");
@@ -26,20 +27,22 @@ namespace ListingLargestFilesProgram
             Console.WriteLine("------------------------------------");
             // sort using Linq
             var filesForLinqQuery = dirInfo.GetFiles();
-            var filesSorted = filesForLinqQuery.OrderBy(f => f.Length);
-            PrintFiles<IEnumerable>(filesSorted);
+            var filesSorted = filesForLinqQuery.OrderBy(f => f.Length).ToList();
+            Console.WriteLine(filesForLinqQuery[0].Name);
+            //PrintFiles<List<FileInfo>>(filesSorted);
         }
        /// <summary>
        /// Generic function to print files
        /// </summary>
        /// <typeparam name="T">A type paramenter that is enumarble</typeparam>
        /// <param name="files">The files that need to be printed </param>
-       private void PrintFiles<T> (T files) where T : IEnumerable 
+       private void PrintFiles<T> (T files) where T : IEnumerable, IList
         {
-            foreach (var file in files)
+            for(var i=0; i<5; i++)
             {
-                Console.WriteLine(file);
+                Console.WriteLine($"{files[i]}");
             }
+            
         }
 
         
