@@ -75,6 +75,7 @@ namespace Features
             // Many of the Linq methods take an IEnumerable and return one - which means you can chain methods... 
             var query = developers.Where(e => e.Name.Length == 5).OrderBy(e => e.Name);
 
+            // query syntax - has to end with select or group
             var query2 = from developer in developers
                          where developer.Name.Length == 5
                          orderby developer.Name
